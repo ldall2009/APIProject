@@ -15,7 +15,7 @@
 
         public const string BaseBenefitsCostLabel = "Base Benefits Cost";
         public const string DependentsBenefitsCostLabel = "Benefits Cost for Number of Dependents";
-        public const string DependentsAboveAgeThresholdBenefitsCostLabel = $"Benefits Cost for Number of Dependents Above Age Threshold";
+        public const string DependentsAboveAgeThresholdBenefitsCostLabel = "Benefits Cost for Number of Dependents Above Age Threshold";
         public const string HighSalaryBenefitsCostLabel = "High Salary Benefits Cost";
     }
 }

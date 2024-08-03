@@ -34,7 +34,7 @@ namespace ApiTests.Unit_Tests
                 Salary = 100_000
             };
 
-            decimal expectedEarningsPerPaycheck = (getEmployeeDto.Salary / PaycheckConstants.PaychecksPerYear).RoundToNearestHundreths();
+            decimal expectedEarningsPerPaycheck = (getEmployeeDto.Salary / PaycheckConstants.PaychecksPerYear).RoundToNearestHundredths();
 
             decimal result = _paycheckCalculator.CalculateEarningsPerPaycheck(getEmployeeDto);
 
@@ -57,7 +57,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.BaseBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateBaseBenefitsDeduction();
@@ -88,7 +88,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.DependentsBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsCountDeduction(getEmployeeDto);
@@ -109,7 +109,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.DependentsBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsCountDeduction(getEmployeeDto);
@@ -157,7 +157,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.DependentsAboveAgeThresholdBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsOverAgeThresholdCountDeduction(getEmployeeDto);
@@ -189,7 +189,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.DependentsAboveAgeThresholdBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsOverAgeThresholdCountDeduction(getEmployeeDto);
@@ -212,7 +212,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.DependentsAboveAgeThresholdBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsOverAgeThresholdCountDeduction(getEmployeeDto);
@@ -242,7 +242,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.HighSalaryBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateHighSalaryDeduction(getEmployeeDto);
@@ -264,7 +264,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.HighSalaryBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateHighSalaryDeduction(getEmployeeDto);
@@ -286,7 +286,7 @@ namespace ApiTests.Unit_Tests
             GetPaycheckDeductionDto expectedDto = new()
             {
                 Label = PaycheckConstants.HighSalaryBenefitsCostLabel,
-                Amount = expectedCostPerPaycheck.RoundToNearestHundreths()
+                Amount = expectedCostPerPaycheck.RoundToNearestHundredths()
             };
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateHighSalaryDeduction(getEmployeeDto);

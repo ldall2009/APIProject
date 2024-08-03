@@ -42,7 +42,7 @@ namespace Api.Services.Paycheck.Calculators
             decimal earningsPerPaycheck = getEmployeeDto.Salary / PaycheckConstants.PaychecksPerYear;
 
             // ASSUMPTION: Assume we want to round to nearest cent.
-            return earningsPerPaycheck.RoundToNearestHundreths();
+            return earningsPerPaycheck.RoundToNearestHundredths();
         }
 
         public ICollection<GetPaycheckDeductionDto> CalculatePaycheckDeductionDtos(GetEmployeeDto getEmployeeDto)
@@ -57,7 +57,7 @@ namespace Api.Services.Paycheck.Calculators
 
             // ASSUMPTION: Assume we do not care to return deductions that are just equal to zero.
             return paycheckDeductions
-                .Where(w => w != null && w.Amount != 0)
+                .Where(w => w.Amount != 0)
                 .ToList();
         }
 
@@ -67,7 +67,7 @@ namespace Api.Services.Paycheck.Calculators
 
             decimal baseBenefitsCostPerPaycheck = PaycheckConstants.BaseBenefitsCostPerYear / PaycheckConstants.PaychecksPerYear;
 
-            return CreatePerPaycheckDeduction("Base Benefits Cost", baseBenefitsCostPerPaycheck);
+            return CreatePerPaycheckDeduction(PaycheckConstants.BaseBenefitsCostLabel, baseBenefitsCostPerPaycheck);
         }
 
         public GetPaycheckDeductionDto CalculateDependentsCountDeduction(GetEmployeeDto getEmployeeDto)
@@ -78,7 +78,7 @@ namespace Api.Services.Paycheck.Calculators
             decimal costOfDependentsPerYear = getEmployeeDto.Dependents.Count * PaycheckConstants.DependentsBenefitsCostPerYear;
             decimal costOfDependentsPerPaycheck = costOfDependentsPerYear / PaycheckConstants.PaychecksPerYear;
 
-            return CreatePerPaycheckDeduction("Benefits Cost for Number of Dependents", costOfDependentsPerPaycheck);
+            return CreatePerPaycheckDeduction(PaycheckConstants.DependentsBenefitsCostLabel, costOfDependentsPerPaycheck);
         }
 
         public GetPaycheckDeductionDto CalculateDependentsOverAgeThresholdCountDeduction(GetEmployeeDto getEmployeeDto)
@@ -115,7 +115,7 @@ namespace Api.Services.Paycheck.Calculators
             {
                 Label = label,
                 // ASSUMPTION: Assume we just want to round to the nearest cent for these costs.
-                Amount = deductionPerPaycheck.RoundToNearestHundreths(),
+                Amount = deductionPerPaycheck.RoundToNearestHundredths(),
             };
         }
     }
