@@ -1,8 +1,16 @@
+using Api.Repositories;
+using Api.Extensions.MiddlewareExtensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<DatabaseContext>(options =>
+{
+    // An in memory database works for the sake of the demo, but if this were not just a demo,
+    // we would use a connection string to point to whatever database name we want to use.
+    options.UseInMemoryDatabase("InMemoryDbName");
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,9 +33,25 @@ builder.Services.AddCors(options =>
         policy => { policy.WithOrigins("http://localhost:3000", "http://localhost"); });
 });
 
+// Decided to put the Dependency Injection configurations in their own extension methods.
+// As an application grows, and we introduce more and more dependencies, this can bloat the middleware.
+// So, I thought housing those configurations in their own dedicated method would abstract that logic out, & have a more readable middleware pipeline.
+builder.Services
+    .AddRepositoryDependencies()
+    .AddServiceDependencies();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Since we are using an in memory database for this demo project, migrations are not necessary.
+// A consequence of not using migrations is that we need to ensure the in memory database is created and seeded
+// with the data specified in the OnModelCreating method of the DatabaseContext.
+// This code will ensure our database is created, and will properly seed it.
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    context.Database.EnsureCreated();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
