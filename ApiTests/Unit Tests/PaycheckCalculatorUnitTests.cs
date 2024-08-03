@@ -194,7 +194,7 @@ namespace ApiTests.Unit_Tests
 
             GetPaycheckDeductionDto result = _paycheckCalculator.CalculateDependentsOverAgeThresholdCountDeduction(getEmployeeDto);
 
-            Assert.Equal(getEmployeeDto.Dependents.Count - 1, numberOfDependentsOverAgeThreshold);
+            Assert.Equal(0, numberOfDependentsOverAgeThreshold);
             Assert.Equal(expectedDto.Label, result.Label);
             Assert.Equal(expectedDto.Amount, result.Amount);
         }
